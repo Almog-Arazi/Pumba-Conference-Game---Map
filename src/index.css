@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "SimonaPro";
+  src: url("/SimonaPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SimonaPro";
+  src: url("/SimonaPro-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "SimonaPro", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Ensure the custom font is always used */
+* {
+  font-family: "SimonaPro", ui-sans-serif, system-ui, sans-serif !important;
+}

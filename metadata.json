@@ -1,0 +1,5 @@
+{
+  "name": "Pumba Parking Race",
+  "description": "A two-player web game controlled by hand gestures via a shared webcam. Players compete to drag their cars into available parking spots on a vector map of Tel Aviv.",
+  "requestFramePermissions": ["camera"]
+}
