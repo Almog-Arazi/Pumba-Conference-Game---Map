@@ -8,7 +8,41 @@
     <link rel="preload" href="/SimonaPro-Bold.otf" as="font" type="font/otf" crossorigin>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pre-React loader — replaced automatically when React mounts -->
+      <style>
+        #pumba-loader {
+          position: fixed; inset: 0; z-index: 99999;
+          display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+          background: #080c18;
+        }
+        #pumba-loader img {
+          width: 120px; height: auto;
+          animation: pumba-pulse 1.8s ease-in-out infinite;
+        }
+        #pumba-loader .loader-bar {
+          width: 160px; height: 4px; border-radius: 4px;
+          background: rgba(255,255,255,0.08); overflow: hidden;
+        }
+        #pumba-loader .loader-fill {
+          width: 40%; height: 100%; border-radius: 4px;
+          background: #33FFCC;
+          animation: pumba-slide 1.2s ease-in-out infinite;
+        }
+        @keyframes pumba-pulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes pumba-slide {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+      </style>
+      <div id="pumba-loader">
+        <img src="/logo_2.svg" alt="Pumba" />
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

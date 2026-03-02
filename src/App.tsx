@@ -1069,6 +1069,15 @@ export function Root() {
   const [adminAuthed, setAdminAuthed] = useState(false);
   const [pin, setPin] = useState('');
   const [pinError, setPinError] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // Small delay so the fade-in feels smooth after heavy JS loads
+    const t = setTimeout(() => setReady(true), 300);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!ready) return null; // HTML loader still visible
 
   if (isAdmin && !adminAuthed) {
     return (
