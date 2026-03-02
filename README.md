@@ -87,14 +87,6 @@ npm run dev
 
 Open **http://localhost:3000** in your browser.
 
-### Environment Variables
-
-Copy `.env.example` to `.env.local` and set your keys if needed:
-
-```
-GEMINI_API_KEY=your_api_key
-```
-
 ## Scripts
 
 | Command | Description |
