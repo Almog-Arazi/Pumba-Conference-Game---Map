@@ -1066,6 +1066,66 @@ export default function App() {
 // Root wrapper — renders AdminPanel when URL hash is #admin, otherwise the game
 export function Root() {
   const isAdmin = window.location.hash === '#admin';
-  if (isAdmin) return <AdminPanel />;
+  const [adminAuthed, setAdminAuthed] = useState(false);
+  const [pin, setPin] = useState('');
+  const [pinError, setPinError] = useState(false);
+
+  if (isAdmin && !adminAuthed) {
+    return (
+      <div style={{ background: '#080c18', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (pin === 'pumba') {
+              setAdminAuthed(true);
+              setPinError(false);
+            } else {
+              setPinError(true);
+            }
+          }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}
+        >
+          <img src="/logo_2.svg" alt="Pumba" style={{ height: 48, marginBottom: 8 }} />
+          <span style={{ color: 'rgba(255,255,255,0.4)', fontWeight: 700, fontSize: 13, letterSpacing: '0.2em' }}>ADMIN ACCESS</span>
+          <input
+            type="password"
+            placeholder="Enter PIN"
+            value={pin}
+            onChange={(e) => { setPin(e.target.value); setPinError(false); }}
+            autoFocus
+            style={{
+              background: 'rgba(255,255,255,0.06)',
+              border: pinError ? '1px solid #FF5555' : '1px solid rgba(255,255,255,0.12)',
+              borderRadius: 10,
+              padding: '12px 20px',
+              color: '#fff',
+              fontSize: 16,
+              textAlign: 'center',
+              outline: 'none',
+              width: 220,
+            }}
+          />
+          {pinError && <span style={{ color: '#FF5555', fontSize: 13 }}>Wrong PIN</span>}
+          <button
+            type="submit"
+            style={{
+              background: '#33FFCC',
+              color: '#060a14',
+              border: 'none',
+              borderRadius: 10,
+              padding: '10px 32px',
+              fontWeight: 700,
+              fontSize: 14,
+              cursor: 'pointer',
+            }}
+          >
+            Enter
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  if (isAdmin && adminAuthed) return <AdminPanel />;
   return <App />;
 }
